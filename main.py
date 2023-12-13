@@ -70,6 +70,7 @@ class  manager_states():
         create_text("Luis Eduardo",screen,422,350,50)
         create_text("Angel Ivan",screen,422,450,50)
         back = create_buton(222,550,screen,450,50)
+        create_text('BACK TO THE MENU',screen,445,575,35)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
