@@ -105,7 +105,7 @@ class  manager_states():
                 if two.collidepoint(pygame.mouse.get_pos()):
                     self.game_background()
                     self.state = 'game'
-
+        clock.tick(60)/100.0
         pygame.display.set_icon(icon)
         pygame.display.flip()
     
