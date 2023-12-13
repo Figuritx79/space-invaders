@@ -1,5 +1,6 @@
 # Para instalar depencias: pip install -r requirements.txt
 import pygame
+import random
 import sys
 sys.path.append('./src')
 from button import create_buton
@@ -22,6 +23,8 @@ icon = pygame.image.load(ruta+"GameIcon.png")
 
 # Creamos la varible clock para determinar en un rato a cuantos fps va ir el juego
 clock = pygame.time.Clock()
+
+
 
 # Scenes mannager
 class  manager_states():
@@ -55,8 +58,9 @@ class  manager_states():
             # Questions scenes
             if event.type == pygame.MOUSEBUTTONDOWN  and event.button ==1:
                 if start.collidepoint(pygame.mouse.get_pos()):
-                    state_random = ["one"]
-                    self.state = state_random[0]
+                    state_random = ["one","two","three","four"]
+                    random_scene = random.randint(0,3)
+                    self.state = state_random[random_scene]
 
 
         pygame.display.set_icon(icon)
@@ -88,7 +92,6 @@ class  manager_states():
         pygame.display.flip()
 
     def question_one(self):
-        self.game_background()
         create_text('Si quieres un powerup, contesta',screen,422,50,30)
         create_text('Dime que numero es 10101',screen,220,180,25)
         one = create_buton(50,310,screen,150,50)
@@ -103,9 +106,72 @@ class  manager_states():
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 :
                 if two.collidepoint(pygame.mouse.get_pos()):
-                    self.game_background()
                     self.state = 'game'
-        clock.tick(60)/100.0
+                    self.clear_screen
+
+        pygame.display.set_icon(icon)
+        pygame.display.flip()
+
+    def question_two(self):
+        create_text('Si quieres un powerup, contesta',screen,422,50,30)
+        create_text('Dime que numero es 1000 en hexa',screen,280,180,25)
+        one = create_buton(50,310,screen,150,50)
+        two = create_buton(50,410,screen,150,50)
+        three = create_buton(50,510,screen,150,50)
+        create_text('A) 21EFA',screen,105,335,25)
+        create_text('B) 3E8',screen,105,435,25)
+        create_text('C) 18AF',screen,105,535,25)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 :
+                if two.collidepoint(pygame.mouse.get_pos()):
+                    self.state = 'game'
+                    self.clear_screen
+
+        pygame.display.set_icon(icon)
+        pygame.display.flip()
+
+    def question_three(self):
+        create_text('Si quieres un powerup, contesta',screen,422,50,30)
+        create_text('Salida de V con el operador NOT',screen,280,180,25)
+        one = create_buton(50,310,screen,150,50)
+        two = create_buton(50,410,screen,150,50)
+        three = create_buton(50,510,screen,150,50)
+        create_text('A) V',screen,105,335,25)
+        create_text('B) F',screen,105,435,25)
+        create_text('C) OLO',screen,105,535,25)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 :
+                if two.collidepoint(pygame.mouse.get_pos()):
+                    self.state = 'game'
+                    self.clear_screen
+
+        pygame.display.set_icon(icon)
+        pygame.display.flip()
+        
+    def question_four(self):
+        create_text('Si quieres un powerup, contesta',screen,422,50,30)
+        create_text('Cual es el operador <=>',screen,280,180,25)
+        one = create_buton(50,310,screen,150,50)
+        two = create_buton(50,410,screen,150,50)
+        three = create_buton(50,510,screen,150,50)
+        create_text('A) Tampo',screen,105,335,25)
+        create_text('B) No se',screen,105,435,25)
+        create_text('C) AND',screen,105,535,25)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 :
+                if two.collidepoint(pygame.mouse.get_pos()):
+                    self.state = 'game'
+                    self.clear_screen
+
         pygame.display.set_icon(icon)
         pygame.display.flip()
     
@@ -126,7 +192,20 @@ class  manager_states():
             self.clear_screen()
             self.credits_state()
         if self.state == 'one':
-            self.question_one()    
+            self.game_background()
+            self.question_one()
+        if self.state == 'two':
+            self.game_background()
+            self.question_two()
+        if self.state == 'three':
+            self.game_background()
+            self.question_three()
+        if self.state == 'four':
+            self.game_background()
+            self.question_four()
+        if self.state == 'game':
+            self.clear_screen()
+            self.game_state()    
 
 
 
